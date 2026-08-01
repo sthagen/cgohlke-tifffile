@@ -1,6 +1,12 @@
 Revisions
 =========
 
+2026.7.31
+
+- Fsspec v3 stores using big-endian floatpred are incompatible with zarr>=3.3.
+- Specify bytes codec endian configuration in ZarrFileSequenceStore.
+- Add additional NDPI tags from specification (#331).
+
 2026.7.14
 
 - Fix series.asxarray returns wrong series for sublevels.
