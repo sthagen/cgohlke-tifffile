@@ -37,7 +37,7 @@ many proprietary metadata formats.
 
 :Author: `Christoph Gohlke <https://www.cgohlke.com>`_
 :License: BSD-3-Clause
-:Version: 2026.7.31
+:Version: 2026.8.16
 :DOI: `10.5281/zenodo.6795860 <https://doi.org/10.5281/zenodo.6795860>`_
 
 Quickstart
@@ -73,9 +73,9 @@ Requirements
 This revision was tested with the following requirements and dependencies
 (other versions may work):
 
-- `CPython <https://www.python.org>`_ 3.12.10, 3.13.14, 3.14.6, 3.15.0b4 64-bit
-- `numpy <https://pypi.org/project/numpy>`_ 2.5.1
-- `Imagecodecs <https://pypi.org/project/imagecodecs/>`_ 2026.6.26
+- `CPython <https://www.python.org>`_ 3.12.10, 3.13.15, 3.14.7, 3.15.0rc 64-bit
+- `Numpy <https://pypi.org/project/numpy>`_ 2.5.2
+- `Imagecodecs <https://pypi.org/project/imagecodecs/>`_ 2026.8.16
   (required for encoding or decoding LZW, JPEG, etc. compressed segments)
 - `Xarray <https://pypi.org/project/xarray>`_ 2026.7.0
   (required only for reading xarray DataArrays)
@@ -90,6 +90,11 @@ This revision was tested with the following requirements and dependencies
 
 Revisions
 ---------
+
+2026.8.16
+
+- Fix fsspec v3 stores with big-endian floatpred codec (breaking).
+- Require imagecodecs >= 2026.8.16.
 
 2026.7.31
 
@@ -365,6 +370,12 @@ References
 
 Examples
 --------
+
+Import functions and classes used in these examples:
+
+.. code-block:: python
+
+    >>> from tifffile import TiffFile, imread, imwrite
 
 Write a NumPy array to a single-page RGB TIFF file:
 
