@@ -1,6 +1,11 @@
 Revisions
 =========
 
+2026.8.16
+
+- Fix fsspec v3 stores with big-endian floatpred codec (breaking).
+- Require imagecodecs >= 2026.8.16.
+
 2026.7.31
 
 - Fsspec v3 stores using big-endian floatpred are incompatible with zarr>=3.3.
