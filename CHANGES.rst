@@ -1,6 +1,10 @@
 Revisions
 =========
 
+2026.8.23
+
+- Add methods to delete pages from main IFD chain and erase their content.
+
 2026.8.16
 
 - Fix fsspec v3 stores with big-endian floatpred codec (breaking).
