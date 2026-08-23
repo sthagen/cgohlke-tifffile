@@ -37,7 +37,7 @@ many proprietary metadata formats.
 
 :Author: `Christoph Gohlke <https://www.cgohlke.com>`_
 :License: BSD-3-Clause
-:Version: 2026.8.16
+:Version: 2026.8.23
 :DOI: `10.5281/zenodo.6795860 <https://doi.org/10.5281/zenodo.6795860>`_
 
 Quickstart
@@ -81,7 +81,7 @@ This revision was tested with the following requirements and dependencies
   (required only for reading xarray DataArrays)
 - `Matplotlib <https://pypi.org/project/matplotlib/>`_ 3.11.1
   (required for plotting)
-- `Lxml <https://pypi.org/project/lxml/>`_ 6.1.1
+- `Lxml <https://pypi.org/project/lxml/>`_ 6.1.2
   (required only for validating and printing XML)
 - `Zarr <https://pypi.org/project/zarr/>`_ 3.3.0
   (required only for using Zarr stores)
@@ -90,6 +90,10 @@ This revision was tested with the following requirements and dependencies
 
 Revisions
 ---------
+
+2026.8.23
+
+- Add methods to delete pages from main IFD chain and erase their content.
 
 2026.8.16
 
@@ -643,6 +647,16 @@ with ImageJ hyperstack or OME-TIFF files):
 
     >>> data = numpy.random.randint(0, 255, (301, 219, 3), 'uint8')
     >>> imwrite('temp.tif', data, photometric='rgb', append=True)
+
+Delete pages from the TIFF file, optionally erasing their image data
+and tag values (note: this is irreversible and might invalidate file
+metadata such as ImageJ or OME-TIFF image descriptions):
+
+.. code-block:: python
+
+    >>> with TiffFile('temp.tif', mode='r+') as tif:
+    ...     tif.pages[-1].delete()  # delete the last page
+    ...     tif.pages.delete([0, 1], erase=True)  # erase the first two pages
 
 Create a TIFF file from a generator of tiles:
 
